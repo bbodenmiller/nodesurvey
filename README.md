@@ -8,6 +8,19 @@ In this example application, you will learn how to create an automated survey th
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/bellevuerails/nodesurvey)
 
+###Mongolab
+
+- create collection called `votes`
+- prime votes with static entries like
+
+```
+{
+  "teamNumber": 1,
+  "teamName": "Awesome",
+  "votes": 0
+}
+```
+
 ## LICENSE
 
 MIT
