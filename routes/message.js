@@ -69,17 +69,18 @@ module.exports = function(request, response) {
     }, function(err, sub) {
         if (err) return respond('Derp! Please text back again later.');
 
+        // Parse the team number from the message body (the first number we find)
+        var teamNumber = getTeamNumber();
+
+        if (teamNumber === 0) {
+            return respond('Please tell us which team number you liked the most');
+        }
+
+        if (teamNumber > 10) {
+            return respond('Try again! Team number ' + teamNumber + ' is not valid');
+        }        
+
         if (!sub) {
-
-            var teamNumber = getTeamNumber();
-
-            if (teamNumber === 0) {
-                return respond('Please tell us which team number you liked the most');
-            }
-
-            if (teamNumber > 10) {
-                return respond('Try again! Team number ' + teamNumber + ' is not valid');
-            }
 
             // If there's no subscriber associated with this phone number,
             // create one
@@ -107,15 +108,10 @@ module.exports = function(request, response) {
     function processMessage(subscriber) {
 
         var currentVote = subscriber.vote;
-        console.log('currentVote = ' + currentVote);
+        console.log('processMessage: currentVote = ' + currentVote);
 
         var teamNumber = getTeamNumber();
-        console.log('processMessage: teamNumber = ' + teamNumber);
-
-        if (teamNumber == 0) {
-            var responseMessage = 'Try again - please tell us the team number you want to vote for';
-            return respond(responseMessage);
-        }
+        console.log('processMessage:     newVote = ' + teamNumber);
 
         // save the entire message body for later use
         subscriber.body = request.body.Body;
