@@ -1,6 +1,17 @@
-# Automated Surveys with Twilio
+# Invisible Anonymous Voting
 
-In this example application, you will learn how to create an automated survey that can be completed via SMS text message or voice calls.
+- Humans send a SMS to phone number #
+- The first number parsed from the message body is the team they are voting for
+
+## Mongo query
+
+### Verify vote count by team number
+```
+db.subscribers.aggregate(
+    {"$match":{"vote":{"$ne":0}}}, 
+    {"$group":{"_id":"$vote", "sum":{"$sum":1}}} 
+)
+```
 
 [Learn more about this code in our interactive code walkthrough](https://www.twilio.com/docs/howto/walkthrough/automated-survey/node/express).
 
