@@ -57,10 +57,10 @@
             animation: true,
 
             // Number - Number of animation steps
-            animationSteps: 60,
+            animationSteps: 60, // 60
 
             // String - Animation easing effect
-            animationEasing: "easeOutQuart",
+            animationEasing: "easeInOutBack",
 
             // Boolean - If we should show the scale at all
             showScale: true,
