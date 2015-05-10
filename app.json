@@ -23,7 +23,7 @@
       "required": true
     }
   },
-  "website": "https://www.twilio.com/docs/howto/walkthrough/automated-survey/node/express",
+  "website": "https://github.com/bellevuerails/nodesurvey",
   "repository": "https://github.com/bellevuerails/nodesurvey",
   "logo": "https://s3.amazonaws.com/howtodocs/twilio-logo.png",
   "success_url": "/landing.html",
