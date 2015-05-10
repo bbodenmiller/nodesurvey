@@ -1,15 +1,15 @@
 // Hard coded survey questions
 module.exports = [
     {
-        text: 'Please tell us your age.',
+        text: 'Enter your favorite team number.',
         type: 'number'
     },
     {
-        text: 'Have you ever been to a hackathon?',
+        text: 'Would you like to see their project in production?',
         type: 'boolean'
     },
     {
-        text: 'What is your favorite car?',
+        text: 'Why do you like this idea?',
         type: 'text'
     }
 ];
