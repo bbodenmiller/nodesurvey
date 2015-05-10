@@ -13,6 +13,40 @@ var results = require('./routes/results');
 mongoose.connect(config.mongoUrl);
 
 // TODO: popualte the Votes collection first!
+var teamNames = [
+	"Alpha",
+	"Bravo",
+	"Charlie",
+	"Delta",
+	"Echo",
+	"Foxtrot",
+	"Golf",
+	"Hotel",
+	"India",
+	"Juliet"
+];
+
+var Votes = require('./models/Votes');
+Votes.remove({}, function(err) { 
+   console.log('votes collection removed') 
+});
+
+for (var i in teamNames) {
+
+	var teamNumber = parseInt(i, 10) + 1;
+	console.log('teamNumber = ' + teamNumber);
+
+	var votes = new Votes({
+		teamNumber: teamNumber,
+		teamName: teamNames[i],
+		votes: 0
+	});
+
+	votes.save(function(err, newSub) {
+    	if (err || !newSub) 
+        	console.log('Could not create votes document');
+	});
+}
 
 // Create Express web app with some useful middleware
 var app = express();

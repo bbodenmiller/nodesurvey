@@ -73,6 +73,14 @@ module.exports = function(request, response) {
 
             var teamNumber = getTeamNumber();
 
+            if (teamNumber === 0) {
+                return respond('Please tell us which team number you liked the most');
+            }
+
+            if (teamNumber > 10) {
+                return respond('Try again! Team number ' + teamNumber + ' is not valid');
+            }
+
             // If there's no subscriber associated with this phone number,
             // create one
             var newSubscriber = new Subscriber({
@@ -136,16 +144,16 @@ module.exports = function(request, response) {
 
         var allTheNumbers;
         var temp = msg.match(/^\d+|\d+\b|\d+(?=\w)/g);
-        console.log('temp = ' + temp);
+        // console.log('temp = ' + temp);
 
         if (temp === null && typeof temp === "object") {
             return 0;
         } else {
             allTheNumbers = temp.map(function (v) {return +v;});
-            console.log('allTheNumbers = ' + allTheNumbers);            
+            // console.log('allTheNumbers = ' + allTheNumbers);            
         }
 
-        console.log('first number found was ' + allTheNumbers[0]);
+        // console.log('first number found was ' + allTheNumbers[0]);
         return allTheNumbers[0];
     }
 
