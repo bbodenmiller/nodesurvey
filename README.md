@@ -6,7 +6,7 @@ In this example application, you will learn how to create an automated survey th
 
 ## Deploy On Heroku
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/TwilioDevEd/survey-node)
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/bellevuerails/nodesurvey)
 
 ## LICENSE
 
