@@ -40,10 +40,39 @@ $(function() {
         }
 
         var ctx = document.getElementById('lemurChart').getContext('2d');
+
         var ageChart = new Chart(ctx).Pie([
             { value: yes, label: 'Yes', color: 'green', highlight: 'gray' },
             { value: no, label: 'No', color: 'red', highlight: 'gray' }
         ]);
+    }
+
+    function votes(teams) {
+
+        var ctx = document.getElementById('voteChart').getContext('2d');
+
+        var teamNames = [];
+        var votes = [];
+
+        for (var i in teams) {
+          console.log(teams[i].teamName);
+          teamNames.push(teams[i].teamName);
+          votes.push(teams[i].votes);
+        }
+
+        var data = {
+            labels: teamNames,
+            datasets: [
+                {
+                    label: "votes",
+                    fillColor: "rgba(220,220,220,0.5",
+                    data: votes
+                }
+            ]
+        }
+
+        var voteChart = new Chart(ctx).Bar(data);
+
     }
 
     // poor man's html template for a response table row
@@ -78,10 +107,11 @@ $(function() {
         method: 'GET'
     }).done(function(data) {
         // Update charts and tables
-        $('#total').html(data.results.length);
-        lemurs(data.results);
-        ages(data.results);
-        freeText(data.results);
+        votes(data.results);
+        // $('#total').html(data.results.length);
+        // lemurs(data.results);
+        // ages(data.results);
+        // freeText(data.results);
     }).fail(function(err) {
         console.log(err);
         alert('failed to load results data :(');

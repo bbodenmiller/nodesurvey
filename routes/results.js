@@ -1,16 +1,15 @@
-var SurveyResponse = require('../models/SurveyResponse');
-var survey = require('../survey_data');
+var Votes = require('../models/Votes');
 
-// Grab all the latest survey data for display in a quick and dirty UI
+// Grab the latest votes data for display in a quick and dirty UI
 module.exports = function(request, response) {
-    SurveyResponse.find({
-        complete: true
-    }).limit(100).exec(function(err, docs) {
+
+    Votes.find({
+
+    }).exec(function(err, docs) {
         if (err) {
-            response.status(500).send(err);
+            respone.status(500).send(err);
         } else {
             response.send({
-                survey: survey,
                 results: docs
             });
         }
