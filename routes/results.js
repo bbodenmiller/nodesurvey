@@ -5,7 +5,7 @@ module.exports = function(request, response) {
 
     Votes.find({
 
-    }).exec(function(err, docs) {
+    }).sort( { teamNumber: 1 } ).exec(function(err, docs) {
         if (err) {
             respone.status(500).send(err);
         } else {
