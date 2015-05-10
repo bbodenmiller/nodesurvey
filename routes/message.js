@@ -1,8 +1,5 @@
 var twilio = require('twilio');
 
-var SurveyResponse = require('../models/SurveyResponse');
-var survey = require('../survey_data');
-
 var Votes = require('../models/Votes');
 var Subscriber = require('../models/Subscriber');
 
@@ -42,7 +39,7 @@ module.exports = function(request, response) {
         });
     }
 
-    function subtractVote(teamNumber) {
+    function subtractVote(teamNumber, tt, cb) {
 
         console.log('subtracting a vote from team ' + teamNumber);
 
@@ -59,6 +56,8 @@ module.exports = function(request, response) {
                 team.save(function(err) {
                     if (err)
                         return respond('Derp! Technical issue updating vote count');
+
+                    cb(tt);
                 });
             }
         });
@@ -118,8 +117,11 @@ module.exports = function(request, response) {
                 return respond('We could not cast your vote - please try again');
             
             // TODO: Update the team collection
-            subtractVote(currentVote);
-            addVote(teamNumber);
+            if (currentVote != teamNumber) {
+                subtractVote(currentVote, teamNumber, addVote);
+                // subtractVote(currentVote);
+                // addVote(teamNumber);            
+            }
 
             // Otherwise, our subscription has been updated
             var responseMessage = 'Team ' + teamNumber + ' thanks you for voting!';
