@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Votr // Hack at the Factory</title>
+  <meta name="description" content="Votr" />
+  <meta name="keywords" content="thing, thing, thing, thing, thing, thing" />
+  <link rel="shortcut icon" href="#">
+  <link rel="stylesheet" type="text/css" href="css/demo.css" />
+  <link rel="stylesheet" type="text/css" href="css/component.css" />
+</head>
+
+<body>
+  <div class="container">
+    <div id="splitlayout" class="splitlayout">
+      <div class="intro">
+        <div class="side side-left">
+          <!-- <header class="codropsheader clearfix">
+                        <span>logo<span class="bp-icon bp-icon-about" data-content="content you want in the about icon"></span></span>
+                        <h1>Title or Logo Name</h1>
+                    </header> -->
+          <div class="intro-content">
+            <div class="left-logo"><img src="img/votr-hatf-logo.png" alt="Hack in the Factory">
+              <p class="hack">Hack in the</p>
+              <p class="factory">Factory</p>
+            </div>
+            <div class="how-to-play">
+              <h1><span>(609) 422-5372</span><span>text your crowd favorite's name</span></h1>
+            </div>
+          </div>
+        </div>
+        <div class="side side-right">
+          <div class="intro-content">
+            <!-- <div class="profile"><img src="img/profile2.jpg" alt="profile2"></div> -->
+            <div id="canvas-holder">
+              <canvas id="chart-area" width="600" height="600" />
+            </div>
+            <div class="team-legend">
+              <div class="pull-left">
+                <ul>
+                  <li class="team-1">Red Jaguars</li>
+                  <li class="team-2">Green Monkeys</li>
+                  <li class="team-3">Silver Snakes</li>
+                  <li class="team-4">Purple Parrots</li>
+                </ul>
+              </div>
+              <div class="pull-right">
+                <ul>
+                  <li class="team-5">Blue Barracudas</li>
+                  <li class="team-6">Orange Iguanas</li>
+                  <li class="team-7">Pink Giraffes</li>
+                  <li class="team-8">White Rhinos</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <footer>
+      <p>Made with <div class="heart">&#10084;</div> by your Bellevue Innovation Cell</p>
+    </footer> -->
+    <!-- /splitlayout -->
+  </div>
+  <!-- /container -->
+  <script src="js/Chart.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script>
+  var randomScalingFactor = function() {
+    return Math.round(Math.random() * 100)
+  };
+  var randomColorFactor = function() {
+    return Math.round(Math.random() * 255)
+  };
+
+  var doughnutData = [{
+      value: randomScalingFactor(),
+      color: "#F7464A",
+      highlight: "RGBA(247, 70, 74, .7)",
+      label: "Red Jaguars"
+    }, {
+      value: randomScalingFactor(),
+      color: "#46BFBD",
+      highlight: "RGBA(76, 191, 188, .7)",
+      label: "Green Monkeys"
+    }, {
+      value: randomScalingFactor(),
+      color: "#949FB1",
+      highlight: "RGBA(148, 159, 177, .7)",
+      label: "Silver Snakes"
+    }, {
+      value: randomScalingFactor(),
+      color: "#555AA7",
+      highlight: "RGBA(85, 92, 165, .7)",
+      label: "Purple Parrots"
+    }, {
+      value: randomScalingFactor(),
+      color: "#5B90BF",
+      highlight: "RGBA(93, 145, 189, .7)",
+      label: "Blue Barracudas"
+    }, {
+      value: randomScalingFactor(),
+      color: "#FFA200",
+      highlight: "RGBA(253, 161, 39, .7)",
+      label: "Orange Iguanas"
+    }, {
+      value: randomScalingFactor(),
+      color: "#D8ADC6",
+      highlight: "RGBA(215, 174, 198, .7)",
+      label: "Pink Giraffes"
+    }, {
+      value: randomScalingFactor(),
+      color: "#bababa",
+      highlight: "#bababa",
+      label: "White Rhinos"
+    }
+
+
+  ];
+
+  window.onload = function() {
+    var ctx = document.getElementById("chart-area").getContext("2d");
+    window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {
+      responsive: true,
+      segmentShowStroke: false,
+    });
+  };
+
+  $('#randomizeData').click(function() {
+    $.each(doughnutData, function(i, piece) {
+      doughnutData[i].value = randomScalingFactor();
+      doughnutData[i].color = 'rgba(' + randomColorFactor() + ',' + randomColorFactor() + ',' + randomColorFactor() + ',.7)';
+    });
+    window.myDoughnut.update();
+  });
+  </script>
+
+</html>
